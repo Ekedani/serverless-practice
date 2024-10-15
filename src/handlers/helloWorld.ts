@@ -1,5 +1,7 @@
-export const helloWorld = async (event: any) => {
+import { ServiceResponse } from "../interfaces/serviceResponse";
+
+export const helloWorld = async (event: any): Promise<ServiceResponse<string>> => {
     return {
-      message: "Hello world"
+      data: "Hello world"
     }
 };
