@@ -2,3 +2,5 @@ node_modules
 .serverless
 .esbuild
 response.json
+.env
+.dynamodb

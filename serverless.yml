@@ -13,5 +13,12 @@ build:
   esbuild: false # Serverless includes ESBuild out-of-the box, but it conflicts with the required plugin
 
 plugins:
+  - serverless-dynamodb
   - serverless-offline
   - serverless-esbuild
+
+custom:
+  serverless-dynamodb:
+    start:
+      port: 8000
+      docker: false
