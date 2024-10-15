@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "serverless offline",
+    "build": "serverless package"
+  },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.145",
     "serverless-esbuild": "^1.54.4",
