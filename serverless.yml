@@ -7,11 +7,11 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: handler.helloWorld
 
 build:
-  esbuild: false
-  
+  esbuild: false # Serverless includes ESBuild out-of-the box, but it conflicts with the required plugin
+
 plugins:
   - serverless-offline
   - serverless-esbuild
