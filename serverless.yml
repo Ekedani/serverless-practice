@@ -9,7 +9,9 @@ functions:
   hello:
     handler: handler.hello
 
-
+build:
+  esbuild: false
+  
 plugins:
   - serverless-offline
   - serverless-esbuild
