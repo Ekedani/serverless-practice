@@ -5,10 +5,12 @@
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.145",
+    "@types/express": "^5.0.0",
     "serverless-esbuild": "^1.54.4",
     "serverless-offline": "^14.3.2"
   },
   "dependencies": {
+    "express": "^4.21.1",
     "serverless-dynamodb": "^0.2.54"
   }
 }
