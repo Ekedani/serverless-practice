@@ -1,5 +1,7 @@
 import { DbRepository } from '../interfaces/db-repository';
-import { Todo, CreateTodoDTO, UpdateTodoDTO } from '../interfaces/todo';
+import { Todo } from '../interfaces/todo';
+import { CreateTodoDTO } from '../dto/create-todo.dto';
+import { UpdateTodoDTO } from '../dto/update-todo.dto';
 import { randomUUID } from 'crypto';
 
 export class TodoService {

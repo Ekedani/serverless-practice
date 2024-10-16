@@ -2,8 +2,9 @@ import express from 'express';
 import serverless from 'serverless-http';
 import { DynamoDbRepository } from '../repositories/dynamo-db.repository'
 import { TodoService } from '../services/todo.service';
-import { CreateTodoDTO, UpdateTodoDTO } from '../interfaces/todo';
 import { DbRepository } from '../interfaces/db-repository';
+import { CreateTodoDTO } from '../dto/create-todo.dto';
+import { UpdateTodoDTO } from '../dto/update-todo.dto';
 
 const app = express();
 app.use(express.json());
