@@ -2,25 +2,39 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand, DeleteCommand } from '@aws-sdk/lib-dynamodb';
 
 export class DynamoDBRepository {
-    private client: DynamoDBDocumentClient;
+    private dbClient: DynamoDBDocumentClient;
 
     constructor() {
         const dynamoDBClient = new DynamoDBClient({});
-        this.client = DynamoDBDocumentClient.from(dynamoDBClient);
+        this.dbClient = DynamoDBDocumentClient.from(dynamoDBClient);
     }
 
     async putItem<T extends Record<string, any>>(tableName: string, item: T): Promise<void> {
         const command = new PutCommand({ TableName: tableName, Item: item });
-        await this.client.send(command);
+        await this.dbClient.send(command);
     }
 
     async scanItems<T extends Record<string, any>>(tableName: string): Promise<T[]> {
         const command = new ScanCommand({ TableName: tableName });
-        const result = await this.client.send(command);
+        const result = await this.dbClient.send(command);
         return result.Items as T[];
     }
 
-    async updateItem<T extends Record<string, any>>(tableName: string, key: any, updateExpression: string, expressionAttributeNames: { [key: string]: string }, expressionAttributeValues: { [key: string]: any }): Promise<T> {
+    async updateItem<T extends Record<string, any>>(tableName: string, key: any, updateData: Partial<T>): Promise<T> {
+        const updateExpressionParts: string[] = [];
+        const expressionAttributeNames: { [key: string]: string } = {};
+        const expressionAttributeValues: { [key: string]: any } = {};
+
+        Object.keys(updateData).forEach((attr) => {
+            const keyName = `#${attr}`;
+            const valueName = `:${attr}`;
+            updateExpressionParts.push(`${keyName} = ${valueName}`);
+            expressionAttributeNames[keyName] = attr;
+            expressionAttributeValues[valueName] = updateData[attr];
+        });
+
+        const updateExpression = `SET ${updateExpressionParts.join(', ')}`;
+        
         const command = new UpdateCommand({
             TableName: tableName,
             Key: key,
@@ -30,7 +44,7 @@ export class DynamoDBRepository {
             ReturnValues: 'ALL_NEW',
         });
 
-        const result = await this.client.send(command);
+        const result = await this.dbClient.send(command);
         return result.Attributes as T;
     }
 
@@ -40,6 +54,6 @@ export class DynamoDBRepository {
             Key: key,
         });
 
-        await this.client.send(command);
+        await this.dbClient.send(command);
     }
 }

@@ -37,33 +37,13 @@ export class TodoService {
             return null;
         }
 
-        const updateExpressionParts: string[] = [];
-        const expressionAttributeNames: { [key: string]: string } = {};
-        const expressionAttributeValues: { [key: string]: any } = {};
-
-        if (updateTodoDTO.task) {
-            const key = '#task';
-            updateExpressionParts.push(`${key} = :task`);
-            expressionAttributeNames[key] = 'task';
-            expressionAttributeValues[':task'] = updateTodoDTO.task;
-        }
-
-        if (updateTodoDTO.completed !== undefined) {
-            const key = '#completed';
-            updateExpressionParts.push(`${key} = :completed`);
-            expressionAttributeNames[key] = 'completed';
-            expressionAttributeValues[':completed'] = updateTodoDTO.completed;
-        }
-
-        const updateExpression = `SET ${updateExpressionParts.join(', ')}`;
+        const updateData: Partial<Todo> = { id, ...updateTodoDTO };
         const updatedTodo = await this.dbRepository.updateItem<Todo>(
             this.tableName,
             { id },
-            updateExpression,
-            expressionAttributeNames,
-            expressionAttributeValues
+            updateData
         );
-
+    
         return updatedTodo;
     }
 
