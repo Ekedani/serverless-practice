@@ -19,7 +19,7 @@ export class TodoService {
         const todo: Todo = {
             id,
             task: createTodoDTO.task,
-            completed: false,
+            status: 'available',
             createdAt: Date.now()
         };
         await this.dbRepository.putItem(this.tableName, todo);
