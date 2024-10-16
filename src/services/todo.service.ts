@@ -2,7 +2,7 @@ import { DbRepository } from '../interfaces/db-repository';
 import { Todo } from '../interfaces/todo';
 import { CreateTodoDTO } from '../dto/create-todo.dto';
 import { UpdateTodoDTO } from '../dto/update-todo.dto';
-import { randomUUID } from 'crypto';
+import { v7 as uuid } from 'uuid';
 import { DynamoDbRepository } from '../repositories/dynamo-db.repository';
 
 export class TodoService {
@@ -15,7 +15,7 @@ export class TodoService {
     }
 
     async create(createTodoDTO: CreateTodoDTO): Promise<Todo> {
-        const id = randomUUID();
+        const id = uuid()
         const todo: Todo = {
             id,
             task: createTodoDTO.task,
