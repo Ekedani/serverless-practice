@@ -24,12 +24,24 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
+          - AttributeName: completed
+            AttributeType: B
         KeySchema:
           - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+        GlobalSecondaryIndexes:
+         - IndexName: CompletedIndex
+           KeySchema:
+             - AttributeName: completed
+               KeyType: HASH
+           Projection:
+             ProjectionType: ALL
+           ProvisionedThroughput:
+             ReadCapacityUnits: 1  
+             WriteCapacityUnits: 1
 
 build:
   esbuild: false # Serverless includes ESBuild out-of-the box, but it conflicts with the required plugin
