@@ -40,7 +40,7 @@ export class TodoService {
             return null;
         }
 
-        const updateData: Partial<Todo> = { id, ...updateTodoDTO };
+        const updateData: Partial<Todo> = updateTodoDTO;
         const updatedTodo = await this.dbRepository.updateItem<Todo>(
             this.tableName,
             { id },

@@ -52,7 +52,7 @@ app.get('/todos/:id', async (req, res) => {
     }
 });
 
-app.put('/todos/:id', async (req, res) => {
+app.patch('/todos/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const updateTodoDTO: UpdateTodoDTO = req.body;
