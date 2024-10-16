@@ -4,17 +4,24 @@
     "build": "serverless package"
   },
   "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.670.0",
+    "@aws-sdk/lib-dynamodb": "^3.670.0",
     "@types/aws-lambda": "^8.10.145",
     "@types/express": "^5.0.0",
+    "serverless": "^4.4.6",
+    "serverless-dynamodb": "^0.2.54",
     "serverless-esbuild": "^1.54.4",
+    "serverless-http": "^3.2.0",
     "serverless-offline": "^14.3.2"
   },
   "dependencies": {
-    "@aws-sdk/client-dynamodb": "^3.670.0",
-    "@aws-sdk/lib-dynamodb": "^3.670.0",
     "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "serverless-dynamodb": "^0.2.54",
-    "serverless-http": "^3.2.0"
-  }
+    "express": "^4.21.1"
+  },
+  "name": "serverless-functions-practice",
+  "version": "1.0.0",
+  "main": "handler.ts",
+  "repository": "https://github.com/Ekedani/serverless-practice.git",
+  "author": "Vlalden Iliushchenko <vladlen_iliushchenko@epam.com>",
+  "license": "MIT"
 }
