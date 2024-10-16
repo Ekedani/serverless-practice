@@ -24,32 +24,12 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
-          - AttributeName: task
-            AttributeType: S
-          - AttributeName: completed
-            AttributeType: BOOL
         KeySchema:
           - AttributeName: id
             KeyType: HASH
-        LocalSecondaryIndexes:
-          - IndexName: CompletedIndex
-            KeySchema:
-              - AttributeName: id
-                KeyType: HASH
-              - AttributeName: completed
-                KeyType: RANGE
-            Projection:
-              ProjectionType: ALL
-        GlobalSecondaryIndexes:
-          - IndexName: TaskIndex
-            KeySchema:
-              - AttributeName: task
-                KeyType: HASH
-            Projection:
-              ProjectionType: ALL
         ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
 
 build:
   esbuild: false # Serverless includes ESBuild out-of-the box, but it conflicts with the required plugin
@@ -64,3 +44,4 @@ custom:
     start:
       port: 8000
       docker: false
+      migrate: true
