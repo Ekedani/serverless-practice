@@ -8,7 +8,9 @@ provider:
 functions:
   hello:
     handler: handler.helloWorld
-
+  todos:
+    handler: handler.todos
+        
 build:
   esbuild: false # Serverless includes ESBuild out-of-the box, but it conflicts with the required plugin
 

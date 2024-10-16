@@ -14,6 +14,7 @@
     "@aws-sdk/lib-dynamodb": "^3.670.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "serverless-dynamodb": "^0.2.54"
+    "serverless-dynamodb": "^0.2.54",
+    "serverless-http": "^3.2.0"
   }
 }
