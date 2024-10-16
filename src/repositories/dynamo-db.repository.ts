@@ -3,7 +3,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand, DeleteCommand } from '@aws-sdk/lib-dynamodb';
 
 export class DynamoDbRepository implements DbRepository {
-    private dbClient: DynamoDBDocumentClient;
+    protected dbClient: DynamoDBDocumentClient;
 
     constructor() {
         const dynamoDBClient = new DynamoDBClient({
