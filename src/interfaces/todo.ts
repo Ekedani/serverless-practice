@@ -3,4 +3,5 @@ export interface Todo {
     task: string;
     createdAt: number;
     status: string;
+    ownerId: string;
 }
