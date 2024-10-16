@@ -10,6 +10,22 @@ functions:
     handler: handler.helloWorld
   todos:
     handler: handler.todos
+    events:
+      - http:
+          path: todos
+          method: post
+      - http:
+          path: todos
+          method: get
+      - http:
+          path: todos/{id}
+          method: get
+      - http:
+          path: todos/{id}
+          method: put
+      - http:
+          path: todos/{id}
+          method: delete
         
 build:
   esbuild: false # Serverless includes ESBuild out-of-the box, but it conflicts with the required plugin
