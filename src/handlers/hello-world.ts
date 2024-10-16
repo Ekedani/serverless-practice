@@ -1,4 +1,4 @@
-import { ServiceResponse } from "../interfaces/service-response";
+import { ServiceResponse } from "@interfaces/service-response";
 import { Logger } from '@aws-lambda-powertools/logger';
 
 const logger = new Logger()

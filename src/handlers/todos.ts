@@ -1,10 +1,8 @@
 import express from 'express';
 import serverless from 'serverless-http';
-import { DynamoDbRepository } from '../repositories/dynamo-db.repository'
-import { TodoService } from '../services/todo.service';
-import { DbRepository } from '../interfaces/db-repository';
-import { CreateTodoDTO } from '../dto/create-todo.dto';
-import { UpdateTodoDTO } from '../dto/update-todo.dto';
+import { TodoService } from '@services/todo.service';
+import { CreateTodoDTO } from '@dto/create-todo.dto';
+import { UpdateTodoDTO } from '@dto/update-todo.dto';
 import { Logger } from '@aws-lambda-powertools/logger';
 
 const app = express();

@@ -1,9 +1,9 @@
-import { DbRepository } from '../interfaces/db-repository';
-import { Todo } from '../interfaces/todo';
-import { CreateTodoDTO } from '../dto/create-todo.dto';
-import { UpdateTodoDTO } from '../dto/update-todo.dto';
+import { DbRepository } from '@interfaces/db-repository';
+import { Todo } from '@interfaces/todo';
+import { CreateTodoDTO } from '@dto/create-todo.dto';
+import { UpdateTodoDTO } from '@dto/update-todo.dto';
+import { DynamoDbRepository } from '@repositories/dynamo-db.repository';
 import { v7 as uuid } from 'uuid';
-import { DynamoDbRepository } from '../repositories/dynamo-db.repository';
 
 export class TodoService {
     private dbRepository: DbRepository;

@@ -1,4 +1,4 @@
-import { DbRepository } from '../interfaces/db-repository';
+import { DbRepository } from '@interfaces/db-repository';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand, DeleteCommand } from '@aws-sdk/lib-dynamodb';
 
@@ -6,7 +6,14 @@ export class DynamoDbRepository implements DbRepository {
     private dbClient: DynamoDBDocumentClient;
 
     constructor() {
-        const dynamoDBClient = new DynamoDBClient({});
+        const dynamoDBClient = new DynamoDBClient({
+            region: process.env.region,
+            endpoint: process.env.endpoint,
+            credentials: {
+                accessKeyId: process.env.accessKeyId ?? '',
+                secretAccessKey:  process.env.secretAccessKey ?? ''
+            },
+        });
         this.dbClient = DynamoDBDocumentClient.from(dynamoDBClient);
     }
 

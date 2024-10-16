@@ -1,4 +1,4 @@
 import 'dotenv/config'
 
-export { helloWorld } from './src/handlers/hello-world'
-export { todos } from './src/handlers/todos'
+export { helloWorld } from '@handlers/hello-world'
+export { todos } from '@handlers/todos'
