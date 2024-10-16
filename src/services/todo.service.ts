@@ -1,5 +1,5 @@
-import { Todo, CreateTodoRequest, UpdateTodoRequest } from '../interfaces/todo';
-import { DynamoDBRepository } from '../repositories/dynamoDBRepository';
+import { Todo, CreateTodoDTO, UpdateTodoDTO } from '../interfaces/todo';
+import { DynamoDBRepository } from '../repositories/dynamo-db.repository';
 import { randomUUID } from 'crypto';
 
 export class TodoService {
@@ -11,11 +11,11 @@ export class TodoService {
         this.tableName = tableName;
     }
 
-    async create(request: CreateTodoRequest): Promise<Todo> {
+    async create(createTodoDTO: CreateTodoDTO): Promise<Todo> {
         const id = randomUUID();
         const todo: Todo = {
             id,
-            task: request.task,
+            task: createTodoDTO.task,
             completed: false,
         };
         await this.dbRepository.putItem(this.tableName, todo);
@@ -31,7 +31,7 @@ export class TodoService {
         return items.find(item => item.id === id) || null;
     }
 
-    async updateById(id: string, request: UpdateTodoRequest): Promise<Todo | null> {
+    async updateById(id: string, updateTodoDTO: UpdateTodoDTO): Promise<Todo | null> {
         const existingTodo = await this.findById(id);
         if (!existingTodo) {
             return null;
@@ -41,18 +41,18 @@ export class TodoService {
         const expressionAttributeNames: { [key: string]: string } = {};
         const expressionAttributeValues: { [key: string]: any } = {};
 
-        if (request.task) {
+        if (updateTodoDTO.task) {
             const key = '#task';
             updateExpressionParts.push(`${key} = :task`);
             expressionAttributeNames[key] = 'task';
-            expressionAttributeValues[':task'] = request.task;
+            expressionAttributeValues[':task'] = updateTodoDTO.task;
         }
 
-        if (request.completed !== undefined) {
+        if (updateTodoDTO.completed !== undefined) {
             const key = '#completed';
             updateExpressionParts.push(`${key} = :completed`);
             expressionAttributeNames[key] = 'completed';
-            expressionAttributeValues[':completed'] = request.completed;
+            expressionAttributeValues[':completed'] = updateTodoDTO.completed;
         }
 
         const updateExpression = `SET ${updateExpressionParts.join(', ')}`;

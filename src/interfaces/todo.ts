@@ -4,11 +4,11 @@ export interface Todo {
     completed: boolean;
 }
 
-export interface CreateTodoRequest {
+export interface CreateTodoDTO {
     task: string;
 }
 
-export interface UpdateTodoRequest {
+export interface UpdateTodoDTO {
     task?: string;
     completed?: boolean;
 }
