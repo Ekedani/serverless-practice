@@ -4,11 +4,16 @@ import { TodoService } from '@services/todo.service';
 import { CreateTodoDTO } from '@dto/create-todo.dto';
 import { UpdateTodoDTO } from '@dto/update-todo.dto';
 import { Logger } from '@aws-lambda-powertools/logger';
+import { Tracer } from '@aws-lambda-powertools/tracer';
+import middy from '@middy/core';
+import { captureLambdaHandler } from '@aws-lambda-powertools/tracer/middleware';
 
 const app = express();
 app.use(express.json());
 
 const logger = new Logger();
+const tracer = new Tracer();
+
 const todoService = new TodoService();
 
 app.post('/todos', async (req, res) => {
@@ -75,5 +80,6 @@ app.delete('/todos/:id', async (req, res) => {
     }
 });
 
-const todos = serverless(app);
-export { todos };
+const todosHandler = serverless(app);
+export const todos = middy(todosHandler).use(captureLambdaHandler(tracer));
+
