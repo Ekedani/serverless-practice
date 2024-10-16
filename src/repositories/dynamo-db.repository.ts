@@ -1,7 +1,8 @@
+import { DbRepository } from '../interfaces/db-repository';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand, DeleteCommand } from '@aws-sdk/lib-dynamodb';
 
-export class DynamoDBRepository {
+export class DynamoDbRepository implements DbRepository {
     private dbClient: DynamoDBDocumentClient;
 
     constructor() {

@@ -1,13 +1,13 @@
+import { DbRepository } from '../interfaces/db-repository';
 import { Todo, CreateTodoDTO, UpdateTodoDTO } from '../interfaces/todo';
-import { DynamoDBRepository } from '../repositories/dynamo-db.repository';
 import { randomUUID } from 'crypto';
 
 export class TodoService {
-    private dbRepository: DynamoDBRepository;
+    private dbRepository: DbRepository;
     private tableName: string;
 
-    constructor(dbService: DynamoDBRepository, tableName: string) {
-        this.dbRepository = dbService;
+    constructor(dbRepository: DbRepository, tableName: string) {
+        this.dbRepository = dbRepository;
         this.tableName = tableName;
     }
 
