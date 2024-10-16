@@ -9,8 +9,7 @@ import { UpdateTodoDTO } from '../dto/update-todo.dto';
 const app = express();
 app.use(express.json());
 
-const dbRepository: DbRepository = new DynamoDbRepository();
-const todoService = new TodoService(dbRepository, 'todos');
+const todoService = new TodoService();
 
 app.post('/todos', async (req, res) => {
     try {

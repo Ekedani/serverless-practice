@@ -3,14 +3,15 @@ import { Todo } from '../interfaces/todo';
 import { CreateTodoDTO } from '../dto/create-todo.dto';
 import { UpdateTodoDTO } from '../dto/update-todo.dto';
 import { randomUUID } from 'crypto';
+import { DynamoDbRepository } from '../repositories/dynamo-db.repository';
 
 export class TodoService {
     private dbRepository: DbRepository;
     private tableName: string;
 
-    constructor(dbRepository: DbRepository, tableName: string) {
-        this.dbRepository = dbRepository;
-        this.tableName = tableName;
+    constructor() {
+        this.dbRepository = new DynamoDbRepository();
+        this.tableName = 'todos';
     }
 
     async create(createTodoDTO: CreateTodoDTO): Promise<Todo> {
