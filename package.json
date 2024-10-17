@@ -2,7 +2,7 @@
   "scripts": {
     "start": "serverless offline",
     "build": "serverless package",
-    "test": "test"
+    "test": "jest"
   },
   "devDependencies": {
     "@aws-lambda-powertools/logger": "^2.9.0",
