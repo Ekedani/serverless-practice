@@ -80,6 +80,6 @@ app.delete('/todos/:id', async (req, res) => {
     }
 });
 
-const todosHandler = serverless(app);
+export const todosHandler = serverless(app);
 export const todos = middy(todosHandler).use(captureLambdaHandler(tracer));
 

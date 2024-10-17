@@ -7,7 +7,7 @@ import middy from '@middy/core'
 const logger = new Logger();
 const tracer = new Tracer();
 
-const helloWorldHandler = async (_event: any): Promise<ServiceResponse<string>> => {
+export const helloWorldHandler = async (_event: any): Promise<ServiceResponse<string>> => {
   logger.info('helloWorld handler invoked');
   return {
     data: "Hello world"
