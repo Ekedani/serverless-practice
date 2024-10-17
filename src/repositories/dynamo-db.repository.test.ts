@@ -48,7 +48,7 @@ describe('DynamoDbRepository', () => {
     });
 
     describe('scanItems', () => {
-        it('should return items from the table', async () => {
+        it('should send ScanCommand to return items from the table', async () => {
             const mockItems = [{ id: '1', name: 'Test Item' }];
             dbClient.send.mockResolvedValueOnce({ Items: mockItems });
 
