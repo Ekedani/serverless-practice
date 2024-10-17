@@ -7,11 +7,11 @@ export class DynamoDbRepository implements DbRepository {
 
     constructor() {
         const dynamoDBClient = new DynamoDBClient({
-            region: process.env.region,
-            endpoint: process.env.endpoint,
+            region: process.env.REGION,
+            endpoint: process.env.ENDPOINT,
             credentials: {
-                accessKeyId: process.env.accessKeyId ?? '',
-                secretAccessKey:  process.env.secretAccessKey ?? ''
+                accessKeyId: process.env.ACCESS_KEY_ID ?? '',
+                secretAccessKey:  process.env.SECRET_ACCESS_KEY ?? ''
             },
         });
         this.dbClient = DynamoDBDocumentClient.from(dynamoDBClient);
