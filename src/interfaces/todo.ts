@@ -1,7 +1,7 @@
 export interface Todo {
     id: string;
     task: string;
-    createdAt: number;
+    version: number;
     status: string;
     ownerId: string;
 }

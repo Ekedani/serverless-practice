@@ -20,7 +20,7 @@ export class TodoService {
             id,
             task: createTodoDTO.task,
             status: 'available',
-            createdAt: Date.now(),
+            version: Date.now(),
             ownerId: createTodoDTO.ownerId
         };
         await this.dbRepository.putItem(this.tableName, todo);

@@ -24,14 +24,14 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
-          - AttributeName: createdAt
+          - AttributeName: version
             AttributeType: N
           - AttributeName: ownerId
             AttributeType: S
         KeySchema:
           - AttributeName: id
             KeyType: HASH
-          - AttributeName: createdAt
+          - AttributeName: version
             KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
