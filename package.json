@@ -9,6 +9,7 @@
     "@aws-lambda-powertools/tracer": "^2.9.0",
     "@aws-sdk/client-dynamodb": "^3.670.0",
     "@aws-sdk/lib-dynamodb": "^3.670.0",
+    "@jest/globals": "^29.7.0",
     "@types/aws-lambda": "^8.10.145",
     "@types/express": "^5.0.0",
     "@types/uuid": "^10.0.0",
@@ -17,7 +18,9 @@
     "serverless-dynamodb": "^0.2.54",
     "serverless-esbuild": "^1.54.4",
     "serverless-http": "^3.2.0",
-    "serverless-offline": "^14.3.2"
+    "serverless-offline": "^14.3.2",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "@middy/core": "^5.5.0",
