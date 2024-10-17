@@ -26,8 +26,6 @@ resources:
             AttributeType: S
           - AttributeName: createdAt
             AttributeType: N
-          - AttributeName: status
-            AttributeType: S
           - AttributeName: ownerId
             AttributeType: S
         KeySchema:
@@ -50,15 +48,6 @@ resources:
             ProvisionedThroughput:
               ReadCapacityUnits: 1
               WriteCapacityUnits: 1
-        LocalSecondaryIndexes: # It's not useful. WIP for better use case
-          - IndexName: StatusIndex
-            KeySchema:
-              - AttributeName: id
-                KeyType: HASH
-              - AttributeName: status
-                KeyType: RANGE
-            Projection:
-              ProjectionType: ALL
 
 build:
   esbuild: false # Serverless includes ESBuild out-of-the box, but it conflicts with the required plugin
