@@ -50,7 +50,7 @@ resources:
             ProvisionedThroughput:
               ReadCapacityUnits: 1
               WriteCapacityUnits: 1
-        LocalSecondaryIndexes:
+        LocalSecondaryIndexes: # It's not useful. WIP for better use case
           - IndexName: StatusIndex
             KeySchema:
               - AttributeName: id
