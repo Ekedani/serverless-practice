@@ -1,5 +1,5 @@
 export interface UpdateTodoDTO {
     task?: string;
-    completed?: boolean;
+    status?: string;
     ownerId?: string;
 }

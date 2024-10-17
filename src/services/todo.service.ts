@@ -33,7 +33,14 @@ export class TodoService {
 
     async findById(id: string): Promise<Todo | null> {
         const items = await this.dbRepository.scanItems<Todo>(this.tableName);
-        return items.find(item => item.id === id) || null;
+            const todosWithId = items.filter(item => item.id === id);
+        if (todosWithId.length === 0) {
+            return null;
+        }
+        const latestTodo = todosWithId.reduce((max, todo) => {
+            return todo.version > max.version ? todo : max;
+        });
+        return latestTodo;
     }
 
     async updateById(id: string, updateTodoDTO: UpdateTodoDTO): Promise<Todo | null> {
@@ -41,15 +48,15 @@ export class TodoService {
         if (!existingTodo) {
             return null;
         }
-
-        const updateData: Partial<Todo> = updateTodoDTO;
-        const updatedTodo = await this.dbRepository.updateItem<Todo>(
-            this.tableName,
-            { id },
-            updateData
-        );
-    
-        return updatedTodo;
+        const todo: Todo = {
+            id,
+            task: updateTodoDTO.task ?? existingTodo.task,
+            status: updateTodoDTO.status ?? existingTodo.status,
+            version: Date.now(),
+            ownerId: updateTodoDTO.ownerId ?? existingTodo.ownerId,
+        };
+        await this.dbRepository.putItem(this.tableName, todo);
+        return todo;
     }
 
     async deleteById(id: string): Promise<void> {

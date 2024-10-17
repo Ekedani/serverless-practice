@@ -41,7 +41,7 @@ resources:
             KeySchema:
               - AttributeName: ownerId
                 KeyType: HASH
-              - AttributeName: createdAt
+              - AttributeName: version
                 KeyType: RANGE
             Projection:
               ProjectionType: ALL
